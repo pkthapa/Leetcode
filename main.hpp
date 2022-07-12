@@ -22,6 +22,7 @@
 #include <fstream>
 #include <future>
 #include <tuple>
+#include <numeric>
 
 using std::cout;
 using std::cin;

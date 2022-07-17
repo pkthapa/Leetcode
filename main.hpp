@@ -47,5 +47,6 @@ using std::string;
 using std::future;
 using std::async;
 using std::pair;
+using std::make_pair;
 using std::priority_queue;
 using std::tuple;

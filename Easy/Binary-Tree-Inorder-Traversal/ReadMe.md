@@ -3,6 +3,7 @@
 ## [94. Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/)
 
 **Problem statement:**
+
 Given the `root` of a binary tree, return the _inorder traversal of its nodes'_ values.
 
 **Example 1:**
@@ -30,7 +31,5 @@ Output: [1]
 
 **Constraints:**
 
-```
-i) The number of nodes in the tree is in the range [0, 100].
-ii) 100 <= Node.val <= 100
-```
+* The number of nodes in the tree is in the range `[0, 100]`.
+* `-100 <= Node.val <= 100`

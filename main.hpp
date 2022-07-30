@@ -54,3 +54,4 @@ using std::priority_queue;
 using std::tuple;
 using std::set;
 using std::map;
+using std::array;

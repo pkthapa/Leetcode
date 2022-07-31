@@ -3,12 +3,13 @@
 class Solution {
 public:
     bool isValid(string s) {
-        int sLen = s.length();
-
         stack<char> stk;
         
-        for (int i{0}; i < sLen; ++i){
-            if (s[i] == '{' or s[i] == '[' or s[i] == '('){
+        // Keep pushing the left side of the brackets into a stack.
+        // If it is not left side, then compare the top element with 
+        // similar left bracket type and then pop out from the stack.
+        for (int i{0}; i < s.length(); ++i) {
+            if (s[i] == '{' or s[i] == '[' or s[i] == '(') {
                 stk.push(s[i]);
             }
             else if (!stk.empty()){

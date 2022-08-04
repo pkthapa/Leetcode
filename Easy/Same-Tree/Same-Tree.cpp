@@ -13,21 +13,18 @@ struct TreeNode {
 class Solution {
 public:
     bool isSameTree(TreeNode* p, TreeNode* q) {
-        if ((nullptr == p && nullptr != q) || (nullptr != p && nullptr == q)) {
-            return false;
-        }
-        if (nullptr == p && nullptr == q) {
+        if (nullptr == p and nullptr == q){
             return true;
         }
 
-        if (p->val != q->val) {
+        if ((nullptr != p and nullptr == q) or (nullptr == p and nullptr != q)){
             return false;
         }
 
-        bool isLeftSame = isSameTree(p->left, q->left);
-        bool isRightSame = isSameTree(p->right, q->right);
-        
-        return isLeftSame && isRightSame;
+        if (p->val == q->val){
+            return isSameTree(p->left, q->left) and isSameTree(p->right, q->right);
+        }
+        return false;
     }
 };
 

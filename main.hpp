@@ -25,6 +25,7 @@
 #include <numeric>
 #include <set>
 #include <map>
+#include <string>
 
 using std::cout;
 using std::cin;
@@ -55,3 +56,4 @@ using std::tuple;
 using std::set;
 using std::map;
 using std::array;
+using std::to_string;

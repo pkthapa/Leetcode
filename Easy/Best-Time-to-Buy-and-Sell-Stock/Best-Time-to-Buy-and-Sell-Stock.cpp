@@ -25,7 +25,7 @@ public:
             // If buying price is less than selling price.
             if (prices[l] < prices[r]) {
                 int currProfit = prices[r] - prices[l];
-                maxProfit = max(maxProfit, currProfit);
+                maxProfit = std::max(maxProfit, currProfit);
             }
             // If selling price is less than previously bought price, then
             // update the buying price to current selling price because we

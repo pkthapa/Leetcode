@@ -37,8 +37,8 @@ public:
             }
             else {
                 return ((n1 + n2) % 2 == 0) ?
-                    static_cast<double>(max(l1, l2) + min(r1, r2)) / 2 :
-                    static_cast<double>(min(r1, r2));
+                    static_cast<double>(std::max(l1, l2) + std::min(r1, r2)) / 2 :
+                    static_cast<double>(std::min(r1, r2));
             }
         }
         return 0.0F;

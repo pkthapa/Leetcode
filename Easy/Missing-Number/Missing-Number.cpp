@@ -5,7 +5,7 @@ public:
     /**
      * @brief Approach 1: Cyclic sort algorithm
      */
-    int missingNumber(vector<int>& nums) {
+    int missingNumber(vector<int>&& nums) {
         int i = 0;
         int n = nums.size();
         

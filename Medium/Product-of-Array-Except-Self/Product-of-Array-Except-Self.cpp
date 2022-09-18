@@ -4,6 +4,25 @@ class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
         int n = nums.size();
+        vector<int> output(n);
+
+        // Assume left of 'nums[0]' is 1. So, storing the product of all
+        // numbers to the left of 'nums[0]'.
+        output[0] = 1; 
+        
+        for (int i = 1; i < n; ++i) {
+            output[i] = nums[i - 1] * output[i - 1];
+        }
+        
+        int rProduct = 1; // Product of all elements to the right of 'nums[n - 1]'.
+        
+        for (int i = n - 1; i >= 0; --i) {
+            output[i] = rProduct * output[i]; // Multiply product of all right elements (rProduct) and product of all left elements (output[i]).
+            rProduct *= nums[i]; // Update product of all right elements.
+        }
+        return output;
+
+        /*int n = nums.size();
         
         vector<int> output (n);
   
@@ -22,7 +41,7 @@ public:
         }
         output[0] = product;
 
-        return output;
+        return output;*/
     }
 };
 

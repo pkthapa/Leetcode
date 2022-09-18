@@ -1,20 +1,30 @@
 #include "main.hpp"
 
 class Solution {
+    void reverse(vector<int>& nums, int l, int r) {
+        while (l < r) {
+            std::swap(nums[l++], nums[r--]);
+        }
+    }
+
 public:
     void rotate(vector<int>& nums, int k) {
+        k = k % nums.size();
+        int l = 0;
+        int r = nums.size() - 1;
+        
         if (k > 0) {
-            int n = nums.size();
-            k %= n;
-            
-            // Reverse the first 'n - k' numbers.
-            reverse(nums.begin(), nums.begin() + n - k);
-            
-            // Reverse the remaining 'n - k' numbers.
-            reverse(nums.begin() + n - k, nums.end());
-            
-            // Reverse the whole array.
-            reverse(nums.begin(), nums.end());
+            // Reverse whole array.
+            // std::reverse(nums.begin(), nums.end());
+            reverse(nums, l, r);
+
+            // Reverse the first 'k' elements.
+            // std::reverse(nums.begin(), nums.begin() + k);
+            reverse(nums, 0, k - 1);
+
+            // Reverse the remaining 'k' elements.
+            // std::reverse(nums.begin() + k, nums.end());
+            reverse(nums, k, r);
         }
     }
 };

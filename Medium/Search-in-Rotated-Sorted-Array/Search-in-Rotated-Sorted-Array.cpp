@@ -2,31 +2,54 @@
 
 class Solution {
 public:
+    // Binary search.
     int search(vector<int>& nums, int target) {
         int l = 0;
         int r = nums.size() - 1;
         
         while (l <= r) {
-            int mid = (l + r) / 2;
+            int mid = (l + r) >> 1; // Mid index.
             
-            if (nums[mid] == target) {
+            if (target == nums[mid]) {
                 return mid;
             }
             
-            // Left sorted portion.
+            // Check if left part of 'mid' or right part of 'mid' is sorted.
+
+            // Left part of 'mid' is sorted.
             if (nums[l] <= nums[mid]) {
-                if (target > nums[mid] or target < nums[l]) {
+                // Check if 'target' is present in sorted left part of 'mid'.
+                // If 'target' is not in range of [nums[l].....nums[mid]] both inclusive, then
+                // it's time to shift our search to right part by making 'l' point to 'mid + 1'.
+                // Visualize this way:
+                /*
+                |(target)---(nums[l])---(nums[mid])-------(nums[r])|
+                */
+                if (target < nums[l] or nums[mid] < target) {
                     l = mid + 1;
                 }
+                // Visualize this way:
+                /*
+                |(nums[l])---(target)---(nums[mid])-------(nums[r])|
+                */
                 else {
                     r = mid - 1;
                 }
             }
-            // Right sorted portion.
+            // Right part of 'mid' is sorted.
             else {
-                if (target < nums[mid] or target > nums[r]) {
+                // If 'target' is out of bound [nums[mid].....nums[r]] both inclusive.
+                // Visualize this way:
+                /*
+                |(nums[l])---(target)---(nums[mid])-------(nums[r])|
+                */
+                if (target < nums[mid] or nums[r] < target) {
                     r = mid - 1;
                 }
+                // Visualize this way:
+                /*
+                |(nums[l])---(nums[mid])---(target)-------(nums[r])|
+                */
                 else {
                     l = mid + 1;
                 }

@@ -1,5 +1,48 @@
 #include "main.hpp"
 
+// Min-heap based approach.
+
+class Solution {
+    struct myComparator {
+        // pair<number, frequency>
+        bool operator()(const pair<int, int>& a, const pair<int, int>& b) {
+            return a.second > b.second;
+        }
+    };
+
+public:
+    vector<int> topKFrequent(vector<int>&& nums, int k) {
+        // Store the frequencies of each number.
+        unordered_map<int, int> freq;
+        
+        for (auto num : nums) {
+            ++freq[num];
+        }
+        
+        // Intuition: Since we need highest number of frequently occurring numbers,
+        // so keeping only k {number, frequency} pair in the min-heap based on the
+        // frequency count.
+        priority_queue<pair<int, int>, vector<pair<int, int>>, myComparator> minHeap;
+        
+        for (auto f : freq) {
+            minHeap.push(f);
+            
+            if (minHeap.size() > k) {
+                minHeap.pop();
+            }
+        }
+        
+        int i = 0;
+        vector<int> result(k);
+        while (!minHeap.empty()) {
+            result[i++] = minHeap.top().first;
+            minHeap.pop();
+        }
+        return result;
+    }
+};
+
+#if 0
 // Credits: https://www.youtube.com/watch?v=YPTqKIgVk-k&ab_channel=NeetCode
 class Solution {
 public:
@@ -45,11 +88,12 @@ public:
         return result;
     }
 };
+#endif
 
 int main() {
     Solution sln;
     {
-        vector<int> result {1, 2};
+        vector<int> result {2, 1};
         assert(result == sln.topKFrequent({1, 1, 1, 2, 2, 3}, 2));
     }
     {

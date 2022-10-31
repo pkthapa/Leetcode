@@ -4,8 +4,6 @@ int dx[] {-1,  0, 1, 0};
 int dy[] { 0, -1, 0, 1};
 
 class Solution {
-    int ROW{0}, COL{0};
-    
     void dfs(vector<vector<char>>& grid, int i, int j){
         grid[i][j] = '0'; // Reset to water so that next time this cell is not visited again.
         
@@ -14,9 +12,10 @@ class Solution {
             int newCell_i = i + dx[n];
             int newCell_j = j + dy[n];
 
-            if ((newCell_i < ROW && newCell_i >= 0) &&
-                (newCell_j < COL && newCell_j >= 0) && 
+            if ((newCell_i < grid.size() && newCell_i >= 0) &&
+                (newCell_j < grid[0].size() && newCell_j >= 0) && 
                 (grid[newCell_i][newCell_j] == '1')){
+
                 dfs(grid, newCell_i, newCell_j);
             }
         }
@@ -26,13 +25,10 @@ public:
 
     int numIslands(vector<vector<char>>& grid) {
         int islandCount{0};
-        
-        ROW = grid.size();
-        COL = grid[0].size();
 
         for (int i{0}; i < grid.size(); ++i){
 
-            for (int j{0}; j < grid[i].size(); ++j){
+            for (int j{0}; j < grid[0].size(); ++j){
 
                 if (grid[i][j] == '1'){ // Land found, so now let's do dfs to find the area.
 
